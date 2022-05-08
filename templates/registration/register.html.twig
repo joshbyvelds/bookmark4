@@ -20,106 +20,11 @@
                 label: 'Password'
             }) }}
 
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn">Sign Up</button>
         {{ form_end(registrationForm) }}        
-        <p>Already have an account? <a href="/register">Login</a></p>
+        <p>Already have an account? <a href="/">Login</a></p>
 
     </div>
 </div>
 
-
-    
-
-
-    <style>
-    
-    body{
-        padding: 20px;
-    }
-
-    .splash {
-        position: relative;
-        max-width: 1600px;
-        background: #11AB48;
-        border-radius: 20px;
-        margin: 0 auto;
-    }
-
-    .logo{
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        width: 130px;
-        height: 130px;
-        background: url("/assets/images/logo_large.png");
-        background-size: contain;
-    }
-
-    .splash .intro, .splash .forms{
-        display: inline-block;
-        width: 50%;    
-        padding: 187px 100px 30px;
-        vertical-align: top;
-    }
-
-    .splash .intro{
-        border-radius: 12px 0 0 12px;
-        color: white;
-    }
-
-    .splash h2{
-        font-size: 32px;
-        padding-bottom: 10px;
-    }
-
-    .splash .forms {
-        background: #bbb;
-        border-radius: 0 12px 12px 0;
-    }
-
-    .splash .forms h2 {
-        padding-bottom: 48px;
-    }
-
-    .splash .forms label {
-        display: block;
-        padding-bottom: 11px;
-    }
-
-    .splash .forms input[type="text"],
-    .splash .forms input[type="password"] {
-        display: block;
-        height: 55px;
-        width: 100%;
-        max-width: 517px;
-        padding: 0 10px;
-        margin-bottom: 26px;
-        border: solid black 1px;
-        border-radius: 12px;
-    }
-
-    .splash .forms button[type="submit"]{
-        width: 100%;
-        max-width: 517px;
-        height: 50px;
-        border-radius: 10px;
-        background: #11AB48;
-        color: white;
-    }
-
-    .splash .remember{
-        position: relative;
-        top: -10px;
-        margin-bottom: 10px;
-    }
-
-    .splash .forms p {
-        padding-top: 20px;
-    }
-
-    .splash .forms p a{
-        color: #11AB48;
-    }
-
-</style>
 {% endblock %}

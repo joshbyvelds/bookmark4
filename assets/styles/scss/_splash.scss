@@ -1,0 +1,86 @@
+.splash {
+    position: relative;
+    max-width: 1600px;
+    background: #11AB48;
+    border-radius: 20px;
+    margin: 0 auto;
+
+    .logo{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 130px;
+        height: 130px;
+        background: url("images/logo_large.png");
+        background-size: contain;
+    }
+
+    .intro, .forms{
+        display: inline-block;
+        width: 50%;    
+        padding: 187px 100px 30px;
+        vertical-align: top;
+    }
+
+    h2{
+        font-size: 32px;
+        padding-bottom: 10px;
+    }
+
+    .intro{
+        border-radius: 12px 0 0 12px;
+        color: white;
+    }
+
+    .forms {
+        background: #bbb;
+        border-radius: 0 12px 12px 0;
+
+        h2 {
+            padding-bottom: 48px;
+        }
+
+        label {
+            display: block;
+            padding-bottom: 11px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            display: block;
+            height: 55px;
+            width: 100%;
+            max-width: 517px;
+            padding: 0 10px;
+            margin-bottom: 26px;
+            border: solid black 1px;
+            border-radius: 12px;
+        }
+
+        button[type="submit"]{
+            width: 100%;
+            max-width: 517px;
+            height: 50px;
+            border-radius: 10px;
+            background: #11AB48;
+            color: white;
+        }
+
+        p {
+            padding-top: 20px;
+
+            a{
+                color: #11AB48;
+            }
+        }
+    }
+    
+
+    .remember{
+        position: relative;
+        top: -10px;
+        margin-bottom: 10px;
+    }
+
+}
