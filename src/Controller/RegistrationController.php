@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Settings;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,9 +33,22 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $settings = new Settings();
+            
+            $settings->setUser($user);
+            $settings->setTheme('');
+            $settings->setProfilePic('');
+            $settings->setLogo('');
+
+            $entityManager->persist($settings);
+
+            $user->setSettings($settings);
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+
 
             return $userAuthenticator->authenticateUser(
                 $user,
