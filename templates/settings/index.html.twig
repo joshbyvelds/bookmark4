@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block body %}
+    <div class="dashboard">
+        <nav>
+            <div class="logo"></div>
+            <ul>
+                <li><a href="/"><i class="fa-solid fa-book-bookmark"></i> Bookmarks</a></li>
+                <li class="active"><a href="/categories"><i class="fa-solid fa-folder"></i>Categories</a></li>
+                <li><a href="/groups"><i class="fa-solid fa-box-archive"></i>Groups</a></li>
+                <li><a href="/stats"><i class="fa-solid fa-chart-column"></i>Stats</a></li>
+                <li><a href="/settings"><i class="fa-solid fa-screwdriver-wrench"></i>Settings</a></li>
+                <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+            </ul>
+        </nav><!--
+
+    --><main>
+            <header>
+                <div class="middle">
+                    <input type="text" class="search" placeholder="Search" />
+                    <div class="filters"></div>
+                </div><!--
+             --><div class="user">
+                    <div class="alerts_icon">
+                    <i class="fa-regular fa-bell"></i></div>
+                    <div class="profile_pic" style=""></div>
+                </div>
+            </header>
+            <div class="main_form">
+                <h2>Adjust Settings</h2>
+               {{ form(form) }}
+            </div>
+        </main>
+    </div>
+{% endblock %}
