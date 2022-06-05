@@ -24,7 +24,7 @@ class SettingsType extends AbstractType
                 ],
             ])
             ->add('profile_image_file', FileType::class, [
-                'label' => 'Logo (png,jpeg,gif,svg)',
+                'label' => 'Profile Pic (png,jpeg,gif,svg)',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

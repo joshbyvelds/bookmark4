@@ -22,6 +22,11 @@ class SettingsController extends AbstractController
         //$date = DateTimeInterface();
         //$bookmark->setLastVisit($date);
         $form = $this->createForm(SettingsType::class, $settings);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            dump($form->isValid());
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $profilePicFile = $form->get('profile_image_file')->getData();
@@ -48,7 +53,7 @@ class SettingsController extends AbstractController
             }
 
             if ($logoFile) {
-                $originalFilename = pathinfo($profilePicFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $originalFilename = pathinfo($logoFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$logoFile->guessExtension();
