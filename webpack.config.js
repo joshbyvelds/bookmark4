@@ -37,11 +37,7 @@ Encore
     // enable Typescript loader
     .enableTypeScriptLoader()
 
-    // Compile Tailwind File
-    .addStyleEntry('tailwind', './assets/styles/css/tailwind.css')
-    
-    // Compile Typescript
-    .addEntry('master', './assets/typescript/master.ts')
+
 
     /*
      * ENTRY CONFIG
@@ -49,6 +45,14 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+
+    // Compile Tailwind File
+    .addStyleEntry('tailwind', './assets/styles/css/tailwind.css')
+
+    // Compile Typescript
+    .addEntry('master', './assets/typescript/master.ts')
+
+    // Compile JS
     .addEntry('app', './assets/app.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

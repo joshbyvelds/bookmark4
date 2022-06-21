@@ -1,7 +1,13 @@
 @import "_splash.scss";
+@import "_page_elements.scss";
 @import "_navbar.scss";
 @import "_dashboard.scss";
+@import "_forms.scss";
+
+@import "themes/_shamrock.scss";
+@import "themes/_launchfire.scss";
 
 body{
+    background: #F0F4FF;
     padding: 20px;
 }

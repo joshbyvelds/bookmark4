@@ -39,7 +39,7 @@ class Bookmark
     #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'Bookmarks')]
     private $groups;
 
-    #[ORM\Column(type: 'string', length: 7)]
+    #[ORM\Column(type: 'string', length: 8)]
     private $bg_color;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -51,6 +51,15 @@ class Bookmark
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'bookmarks')]
     #[ORM\JoinColumn(nullable: false)]
     private $User;
+
+    #[ORM\Column(type: 'boolean')]
+    private $favorite;
+
+    #[ORM\Column(type: 'string', length: 8, nullable: true)]
+    private $icon_color;
+
+    #[ORM\Column(type: 'date')]
+    private $created;
 
     public function __construct()
     {
@@ -233,6 +242,42 @@ class Bookmark
     public function setUser(?User $User): self
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    public function isFavorite(): ?bool
+    {
+        return $this->favorite;
+    }
+
+    public function setFavorite(bool $favorite): self
+    {
+        $this->favorite = $favorite;
+
+        return $this;
+    }
+
+    public function getIconColor(): ?string
+    {
+        return $this->icon_color;
+    }
+
+    public function setIconColor(?string $icon_color): self
+    {
+        $this->icon_color = $icon_color;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
 
         return $this;
     }

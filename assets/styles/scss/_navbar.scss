@@ -3,7 +3,7 @@ nav{
     display: inline-block;
     width: 320px;
     border-radius: 20px 0 0 20px;
-    background: #11AB48;
+    background: gray;
     vertical-align: top;
     
 
@@ -17,7 +17,7 @@ nav{
         height: 100%;
         opacity: 0.3;
         background: url(images/nav_pattern.webp) 0 0 repeat;
-        box-shadow: inset 0 0 20px 7px #11ab48;
+        box-shadow: inset 0 0 20px 7px gray;
         z-index: 1;
         border-radius: 20px 0 0 20px;
     }
@@ -26,6 +26,7 @@ nav{
         position: relative;
         width: 320px;
         height: 113px;
+        margin: 20px 0;
         background: url(images/logo_large.png) center center no-repeat;
         background-size: 125px 125px;
         z-index: 2;
@@ -43,7 +44,7 @@ nav{
             a{
                 position: relative;
                 background: #fff;
-                color: #11AB48;
+                color: gray;
                 border-radius: 20px 0 0 20px;
 
                 &:before{
@@ -74,7 +75,7 @@ nav{
 
                 &:hover{
                     svg {
-                        background: #11AB48;
+                        background: gray;
                         color: white;
                         
                     }
@@ -101,16 +102,18 @@ nav{
         text-align: left;
         line-height: 50px;
 
+        svg{
+            position: relative;
+            top: 6px;
+            left: -6px;
+            padding: 8px 7px;
+        }
+
         &:hover{
             svg {
-                position: relative;
-                top: 6px;
-                left: -6px;
                 background: white;
-                padding: 8px 7px;
                 border-radius: 50%;
-                color: #11AB48;
-                
+                color: gray;
             }
         }
     }

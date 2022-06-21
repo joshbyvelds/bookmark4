@@ -24,16 +24,21 @@
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
+            <link rel="stylesheet" href="/jPicker/jpicker.min.css">
             {{ encore_entry_link_tags('tailwind') }}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="/jPicker/jpicker.min.js"></script>
             {{ encore_entry_script_tags('app') }}
             {{ encore_entry_script_tags('master') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="{% if settings.theme is defined %}theme_{{ settings.theme }}{% endif %}">
         {% block body %}{% endblock %}
+
+        {% include "todo.html.twig" %}
     </body>
 </html>

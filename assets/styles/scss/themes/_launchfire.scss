@@ -1,0 +1,21 @@
+$lf_orange: #e09626;
+$lf_blue: #1a5291;
+
+body.theme_lf{
+    .actions_row{        
+        button{
+            background: $lf_orange;
+        }
+    }
+
+    nav{
+        background: $lf_blue;
+        &:before{
+            box-shadow: inset 0 0 20px 7px $lf_blue;
+        }
+
+        li.active a {
+            color: #e09626;
+        }
+    }
+}

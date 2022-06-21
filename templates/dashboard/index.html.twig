@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
-
 {% block body %}
     <div class="dashboard">
         <nav>
-            <div class="logo"></div>
+            <div class="logo" style="{% if settings.logo %}background-image:url(/uploads/logos/{{ settings.logo }});{% endif %}"></div>
             <ul>
-                <li><a href="/"><i class="fa-solid fa-book-bookmark"></i> Bookmarks</a></li>
-                <li class="active"><a href="/categories"><i class="fa-solid fa-folder"></i>Categories</a></li>
+                <li class="active"><a href="/dashboard"><i class="fa-solid fa-book-bookmark"></i> Bookmarks</a></li>
+                <li><a href="/categories"><i class="fa-solid fa-folder"></i>Categories</a></li>
                 <li><a href="/groups"><i class="fa-solid fa-box-archive"></i>Groups</a></li>
                 <li><a href="/stats"><i class="fa-solid fa-chart-column"></i>Stats</a></li>
                 <li><a href="/settings"><i class="fa-solid fa-screwdriver-wrench"></i>Settings</a></li>
@@ -19,21 +17,31 @@
     --><main>
             <header>
                 <div class="middle">
-                    <input type="text" class="search" placeholder="Search" />
-                    <div class="filters"></div>
+                    <div class="search">
+                        <input type="text" id="create_filter" placeholder="Filter" />
+                        <button id="create_filter_btn"><i class="fa-solid fa-filter-list"></i> Create Filter</button>
+                    </div>
                 </div><!--
              --><div class="user">
                     <div class="alerts_icon">
                     <i class="fa-regular fa-bell"></i></div>
-                    <div class="profile_pic"></div>
+                    <div class="profile_pic" style="{% if settings.profilePic %}background-image:url(/uploads/profile_pics/{{ settings.profilePic }});{% endif %}"></div>
                 </div>
             </header>
-            <div class="grid">
-                <div class="topinfo">
-                    {% set amount = 125 %}
+            <div class="actions_row middle_content_panel full">
+                <div class="actions">
+                    Actions:
+                    <a class="action_btn" href="/bookmark/add"><i class="fa-solid fa-plus"></i> Add</a>
+                </div><!--
+                --><div class="filters">
+                    Filters: 
+                </div>
+            </div>
+            <div class="topinfo middle_content_panel full">
+                    {% set amount = bookmarks|length %}
                     <div class="left">{{ amount }} bookmarks found</div>
                     <div class="right">
-                        Sorted By 
+                        Sorted By:
                         <select name="bookmark_sort" id="bookmark_sort">
                             <option value="least_clicked">Least Clicked</option>
                             <option value="most_clicked">Most Clicked</option>
@@ -43,6 +51,25 @@
                         </select>
                     </div>
                 </div>
+            <div class="grid middle_content_panel full">
+                {% for bookmark in bookmarks %}
+                    <div class="item" style="{% if bookmark.bgImage %}background-image: url(/uploads/bookmark_backgrounds/{{ bookmark.bgImage }}{% endif %});">
+                        <div class="bg_color" style="background: linear-gradient(180deg, #{{ bookmark.bgColor }} 0%, #{{ bookmark.bgColor|slice(0,6) }}ff 90%);"></div>
+                        <div class="inner">
+                            <div class="clicks"><i class="fa-solid fa-hand-pointer"></i>{{ bookmark.clicks }}</div>
+                            <div class="info"><i class="fa-regular fa-memo-circle-info"></i></div>
+                            <div class="fav"><i class="fa-regular fa-heart" style="display: none;"></i><i class="fa-solid fa-heart-circle-check" style="display: none;"></i></div>
+                            <div class="logo" style="{% if bookmark.iconColor %}background-color: #{{ bookmark.iconColor }}; {% endif %} background-image: url(/uploads/bookmark_icons/{{ bookmark.icon }})"></div>
+                            {% if bookmark.subtitle %}
+                                <div class="name">{{ bookmark.title }}</div>
+                                <div class="name_sub">{{ bookmark.subtitle }}</div>
+                            {% else %}
+                                <div class="name large">{{ bookmark.title }}</div>
+                            {% endif %}
+                        </div>
+                        <a href="{{ bookmark.location }}" target="_blank" class="click_panel"></a>
+                    </div>
+                {% endfor %}
             </div><!--
         --><aside></aside>
         </main>

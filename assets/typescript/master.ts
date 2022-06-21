@@ -1,1 +1,1 @@
-//alert("Test TS");
+console.log("Test TS");
