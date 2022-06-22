@@ -132,6 +132,12 @@ class Bookmark
         return $this;
     }
 
+    public function increaseVisitCount(): self
+    {
+        $this->clicks++;
+        return $this;
+    }
+
     public function getLastVisit(): ?\DateTimeInterface
     {
         return $this->last_visit;

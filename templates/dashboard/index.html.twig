@@ -53,12 +53,19 @@
                 </div>
             <div class="grid middle_content_panel full">
                 {% for bookmark in bookmarks %}
+                {% if bookmark.clicks > 1000000 %}
+                    {% set clicks = (bookmark.clicks / 1000000)|number_format(2) ~ "M" %}
+                {% elseif bookmark.clicks > 1000 %}
+                    {% set clicks = (bookmark.clicks / 1000)|number_format(1) ~ "K" %}
+                {% else %}
+                    {% set clicks = bookmark.clicks %}
+                {% endif %}
                     <div class="item" style="{% if bookmark.bgImage %}background-image: url(/uploads/bookmark_backgrounds/{{ bookmark.bgImage }}{% endif %});">
                         <div class="bg_color" style="background: linear-gradient(180deg, #{{ bookmark.bgColor }} 0%, #{{ bookmark.bgColor|slice(0,6) }}ff 90%);"></div>
                         <div class="inner">
-                            <div class="clicks"><i class="fa-solid fa-hand-pointer"></i>{{ bookmark.clicks }}</div>
-                            <div class="info"><i class="fa-regular fa-memo-circle-info"></i></div>
-                            <div class="fav"><i class="fa-regular fa-heart" style="display: none;"></i><i class="fa-solid fa-heart-circle-check" style="display: none;"></i></div>
+                            <div class="clicks" data-clicks="{{ bookmark.clicks }}"><i class="fa-solid fa-hand-pointer"></i><span>{{ clicks }}</span></div>
+                            <div class="info"><i class="fa-solid fa-info"></i></div>
+                            <div class="fav {% if bookmark.favorite %}on{% endif %}"><i class="{% if bookmark.favorite %}fa-solid fa-heart-circle-check{% else %}fa-regular fa-heart{% endif %}"></i></div>
                             <div class="logo" style="{% if bookmark.iconColor %}background-color: #{{ bookmark.iconColor }}; {% endif %} background-image: url(/uploads/bookmark_icons/{{ bookmark.icon }})"></div>
                             {% if bookmark.subtitle %}
                                 <div class="name">{{ bookmark.title }}</div>
@@ -67,11 +74,31 @@
                                 <div class="name large">{{ bookmark.title }}</div>
                             {% endif %}
                         </div>
-                        <a href="{{ bookmark.location }}" target="_blank" class="click_panel"></a>
+                        <a href="{{ bookmark.location }}" target="_blank" class="click_panel" data-id="{{ bookmark.id }}"></a>
                     </div>
                 {% endfor %}
             </div><!--
         --><aside></aside>
         </main>
     </div>
+
+    <script>
+        $(() => {
+            $(".click_panel").on("click", function(){
+                $.post("/bookmark/visit/" + $(this).attr("data-id"));
+                $clicks = $(this).parent().find(".clicks");
+                let clicksNum = parseInt($clicks.attr("data-clicks")) + 1;
+                $clicks.attr("data-clicks", clicksNum);
+                
+                if(clicksNum >= 1000000){
+                    $clicks.find("span").html((clicksNum / 1000000).toFixed(2) + "M");
+                } else if( clicksNum >= 1000){
+                    $clicks.find("span").html((clicksNum / 1000).toFixed(1) + "K");
+                } else {
+                    $clicks.find("span").html(clicksNum);
+                }
+
+            });
+        })
+    </script>
 {% endblock %}

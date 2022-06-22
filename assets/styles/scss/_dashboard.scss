@@ -233,6 +233,10 @@
                 padding: 3px;
                 cursor:ponter;
                 z-index: 7;
+
+                &.on {
+                    color: red;
+                }
             }
 
             .logo{
@@ -240,6 +244,8 @@
                 height: 100px;
                 border-radius: 50%;
                 margin: 10px auto 7px;
+                background-repeat: no-repeat;
+                background-position: center;
                 background-size: contain;
                 border: solid 3px white;
                 box-shadow: 0 0 10px rgba(0, 0, 0,0.3);

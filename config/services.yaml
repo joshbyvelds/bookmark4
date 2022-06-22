@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    timezone: '%env(APP_TIMEZONE)%'
     logos_directory: '%kernel.project_dir%/public/uploads/logos'
     profile_pics_directory: '%kernel.project_dir%/public/uploads/profile_pics'
     bookmark_icons_directory: '%kernel.project_dir%/public/uploads/bookmark_icons'

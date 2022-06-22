@@ -15,14 +15,17 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BookmarkController extends AbstractController
 {
-    #[Route('/bookmark', name: 'app_bookmark')]
-    public function index(): Response
+    #[Route('/bookmark/visit/{id}', name: 'app_bookmark_visit')]
+    public function index(ManagerRegistry $doctrine, BookmarkRepository $booksRepo, $id)
     {
-
-
-        return $this->render('bookmark/index.html.twig', [
-
-        ]);
+        $date = new \DateTime();
+        $bookmark = $booksRepo->find($id);
+        $bookmark->increaseVisitCount();
+        $bookmark->setLastVisit($date);
+        $em = $doctrine->getManager();
+        $em->persist($bookmark);
+        $em->flush();
+        return;
     }
 
     #[Route('/bookmark/add', name: 'app_bookmark_add')]
