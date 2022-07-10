@@ -76,8 +76,6 @@
             {% endfor %}    
             ];
 
-            console.log(bookmarks);
-
             sort($("#bookmark_sort").val());
             displayBookmarks();
             armClicks();
@@ -137,6 +135,12 @@
                 for(var i=0; i < bookmarks.length; i++){
                     var b = bookmarks[i];
 
+                    if(b.favorite){
+                        fav = "<div class=\"fav on\"><i class=\"fa-solid fa-heart-circle-check\"></i></div>";
+                    } else {
+                        fav = "<div class=\"fav\"><i class=\"fa-regular fa-heart\"></i></div>";
+                    }
+
                    
                      var item = "<div class=\"item\" style=\"background-image: url(/uploads/bookmark_backgrounds/"+ b.bg +");\">";
 
@@ -144,8 +148,9 @@
                          item += "<div class=\"inner\">";
                          item += "<div class=\"clicks\" data-clicks=\""+ b.clicks +"\"><i class=\"fa-solid fa-hand-pointer\"></i><span>"+ b.clicks +"</span></div>";
                          item += "<div class=\"info\"><i class=\"fa-solid fa-info\"></i></div>";
-                         item += "<div class=\"fav "+ (b.favorite) ? "on":"" +"\"><i class=\""+ (b.favorite) ? "fa-solid fa-heart-circle-check" : "fa-regular fa-heart" +"\"></i></div>";
-                         item += "<div class=\"logo\" style=\"background-color: #"+ b.iconColor +"; background-image: url(/uploads/bookmark_icons/"+ b.icon +")\"></div>";
+                         item += fav;
+                         
+                         item += "<div class=\"logo\" style=\"background-color: #"+ b.iconc +"; background-image: url(/uploads/bookmark_icons/"+ b.icon +")\"></div>";
                          if(b.subtitle){
                             item += "<div class=\"name\">"+b.title+"</div>";
                             item += "<div class=\"name_sub\">"+b.subtitle+"</div>";
